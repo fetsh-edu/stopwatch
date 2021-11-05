@@ -9,6 +9,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -47,9 +48,7 @@ fun StopwatchScreen(
     viewModel: MainViewModel,
     timestampFormatter: TimestampFormatter
 ) {
-    val currentState : StopwatchState by viewModel.currentState.observeAsState(
-        StopwatchState.INIT
-    )
+    val currentState : StopwatchState by viewModel.currentState.collectAsState()
     Stopwatch(
         timer = currentState,
         timestampFormatter = timestampFormatter,
